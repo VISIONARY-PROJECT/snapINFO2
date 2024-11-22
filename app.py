@@ -25,10 +25,17 @@ if not os.path.exists(model_path):
             for chunk in response.iter_content(chunk_size=1024):
                 f.write(chunk)
         print("Model downloaded successfully.")
+        
     else:
         raise Exception(f"Failed to download model. Status code: {response.status_code}")
 else:
     print("Model already exists locally.")
+
+if os.path.exists("korean.pth"):
+    print(f"Downloaded file size: {os.path.getsize('korean.pth')} bytes")
+else:
+    print("File not found!")
+    
 text_model = torch.load(model_path)
 
 DB=DBmodule()
