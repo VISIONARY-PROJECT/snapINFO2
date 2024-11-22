@@ -3,6 +3,7 @@ from DB_handler import DBmodule
 import text_model
 import uuid
 import datetime
+import requests
 import os
 from flask_cors import CORS
 import torch
@@ -19,7 +20,7 @@ model_url = "https://drive.usercontent.google.com/download?id=1UBKX7dHybcwKK_i2f
 model_path = "korean.pth"
 if not os.path.exists(model_path):
     print("Downloading model...")
-    response = request.get(model_url, stream=True)
+    response = requests.get(model_url, stream=True)
     if response.status_code == 200:
         with open(model_path, "wb") as f:
             for chunk in response.iter_content(chunk_size=1024):
