@@ -13,7 +13,6 @@ app.config["SECRET_KEY"] = "dasggasdgasd"
 app.config["SESSION_COOKIE_SAMESITE"] = "None"
 app.config["SESSION_COOKIE_SECURE"] = True
 
-
 CORS(app, supports_credentials=True)
 
 model_url =  "https://drive.google.com/uc?id=1UBKX7dHybcwKK_i2fYx_CXaL1hrTzQ6y&export=download"
