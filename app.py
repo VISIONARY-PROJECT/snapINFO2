@@ -16,7 +16,7 @@ app.config["SESSION_COOKIE_SECURE"] = True
 
 CORS(app, supports_credentials=True)
 
-model_url =  "https://drive.usercontent.google.com/download?id=1UBKX7dHybcwKK_i2fYx_CXaL1hrTzQ6y&export=download&authuser=0"
+model_url =  "https://drive.google.com/uc?id=1UBKX7dHybcwKK_i2fYx_CXaL1hrTzQ6y&export=download"
 model_path = "korean.pth"
 if not os.path.exists(model_path):
     print("Downloading model...")
