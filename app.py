@@ -3,11 +3,8 @@ from DB_handler import DBmodule
 import text_model
 import uuid
 import datetime
-import requests
 import os
-import gdown
 from flask_cors import CORS
-import torch
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "dasggasdgasd"
@@ -15,22 +12,6 @@ app.config["SESSION_COOKIE_SAMESITE"] = "None"
 app.config["SESSION_COOKIE_SECURE"] = True
 
 CORS(app, supports_credentials=True)
-
-model_url =  "https://drive.google.com/uc?id=1UBKX7dHybcwKK_i2fYx_CXaL1hrTzQ6y&export=download"
-model_path = "korean.pth"
-if not os.path.exists(model_path):
-    print("Downloading model...")
-    gdown.download(model_url, model_path, quiet=False)
-    print("Model downloaded successfully.")
-else:
-    print("Model already exists locally.")
-
-if os.path.exists("korean.pth"):
-    print(f"Downloaded file size: {os.path.getsize('korean.pth')} bytes")
-else:
-    print("File not found!")
-    
-text_model = torch.load(model_path)
 
 DB=DBmodule()
 

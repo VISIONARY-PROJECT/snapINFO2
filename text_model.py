@@ -2,13 +2,14 @@ import random
 import numpy as np
 import cv2
 import app
+import easyocr
 from PIL import ImageFont, ImageDraw, Image
 
 
-def text_out(path):
-    
-    reader = app.text_model.Reader(['ko'], gpu = False)
+def text_out(path):   
+    reader = easyocr.Reader(['ko','en'], gpu = False)
     result = reader.readtext(path)
+    
 
     texts = [i[1] for i in result]
     print("Detected Texts:", texts)
