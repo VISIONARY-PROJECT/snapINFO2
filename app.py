@@ -5,6 +5,7 @@ import uuid
 import datetime
 import requests
 import os
+import gdown
 from flask_cors import CORS
 import torch
 
@@ -15,19 +16,12 @@ app.config["SESSION_COOKIE_SECURE"] = True
 
 CORS(app, supports_credentials=True)
 
-model_url =  "https://drive.google.com/uc?id=1UBKX7dHybcwKK_i2fYx_CXaL1hrTzQ6y&export=download"
+model_url =  "https://drive.google.com/uc?id=1UBKX7dHybcwKK_i2fYx_CXaL1hrTzQ6y"
 model_path = "korean.pth"
 if not os.path.exists(model_path):
     print("Downloading model...")
-    response = requests.get(model_url, stream=True)
-    if response.status_code == 200:
-        with open(model_path, "wb") as f:
-            for chunk in response.iter_content(chunk_size=1024):
-                f.write(chunk)
-        print("Model downloaded successfully.")
-        
-    else:
-        raise Exception(f"Failed to download model. Status code: {response.status_code}")
+    gdown.download(model_url, model_path, quiet=False)
+    print("Model downloaded successfully.")
 else:
     print("Model already exists locally.")
 
