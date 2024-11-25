@@ -9,7 +9,14 @@ import requests
 def get_passport_key():
     """네이버에서 '네이버 맞춤법 검사기' 페이지에서 passportKey를 획득"""
     url = "https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=네이버+맞춤법+검사기"
-    res = requests.get(url)
+
+    ###네이버에서 비정상 접속으로 인지
+    headers = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+    }
+    ###
+
+    res = requests.get(url, headers=headers)
     print(res.status_code)
     html_text = res.text
     match = re.search(r'passportKey=([^&"}]+)', html_text)
