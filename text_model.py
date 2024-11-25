@@ -19,8 +19,8 @@ def text_out(path):
     #combined_text = spell_checked.checked
     print("Combined Text (Spell Checked):", combined_text)
 
-    combined_text_file_path = "static/text/combined_text.txt"
-    with open(combined_text_file_path, "w", encoding="utf-8") as file:
-        file.write(combined_text)
+    #combined_text_file_path = "static/text/combined_text.txt"
+    #with open(combined_text_file_path, "w", encoding="utf-8") as file:
+        #file.write(combined_text)
     
     return combined_text 
