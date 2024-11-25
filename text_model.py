@@ -1,4 +1,5 @@
 import random
+import cv2
 from paddleocr import PaddleOCR
 from hanspell import spell_checker
 
