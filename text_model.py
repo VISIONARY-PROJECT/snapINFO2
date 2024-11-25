@@ -10,16 +10,15 @@ def get_passport_key():
     """네이버에서 '네이버 맞춤법 검사기' 페이지에서 passportKey를 획득"""
     url = "https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=네이버+맞춤법+검사기"
     res = requests.get(url)
+    print(res.status_code)
     html_text = res.text
-    ##test
-    print(html_text)
-    ##
     match = re.search(r'passportKey=([^&"}]+)', html_text)
     if match:
         passport_key = match.group(1)
         return passport_key
     else:
         return None
+
 
 
 def fix_spell_checker_py_code(file_path, passportKey):
