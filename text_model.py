@@ -11,6 +11,9 @@ def get_passport_key():
     url = "https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=네이버+맞춤법+검사기"
     res = requests.get(url)
     html_text = res.text
+    ##test
+    print(html_text)
+    ##
     match = re.search(r'passportKey=([^&"}]+)', html_text)
     if match:
         passport_key = match.group(1)
