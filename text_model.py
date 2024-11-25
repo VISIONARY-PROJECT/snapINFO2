@@ -1,7 +1,7 @@
 import random
 import cv2
 from paddleocr import PaddleOCR
-from hanspell import spell_checker
+#from hanspell import spell_checker
 
 
 def text_out(path):   
@@ -15,8 +15,8 @@ def text_out(path):
     combined_text = " ".join(texts)
     print("Combined Text:", combined_text)
 
-    spell_checked = spell_checker.check(combined_text)
-    combined_text = spell_checked.checked
+    #spell_checked = spell_checker.check(combined_text)
+    #combined_text = spell_checked.checked
     print("Combined Text (Spell Checked):", combined_text)
 
     combined_text_file_path = "static/text/combined_text.txt"
