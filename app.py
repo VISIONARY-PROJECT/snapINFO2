@@ -34,8 +34,9 @@ def upload():
     else: 
         print("yes text")
         DB.write_post(photoid, Dtext)
-        summary = text_model.summary_text(Dtext)
-        return jsonify({"photo_id": photoid, "detect" : True, "summary_text": summary})
+        #print("text 요약 함수 들어가기전")
+        #summary = text_model.summary_text(Dtext)
+        return jsonify({"photo_id": photoid, "detect" : True, "text" : Dtext})  #"summary_text": summary
     
 @app.route("/category", methods = ["POST"])
 def category():
