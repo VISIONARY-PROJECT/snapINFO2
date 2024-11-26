@@ -28,15 +28,14 @@ def upload():
 
     
     Dtext = text_model.text_out("static/img/{}.jpeg".format(photoid))
-
-    
     if Dtext == None:                    #인식이 안된 경우 
         print("no text")
         return jsonify({"photo_id": photoid, "detect" : False, "text" : Dtext})
     else: 
         print("yes text")
-        DB.write_post(photoid, Dtext)  
-        return jsonify({"photo_id": photoid, "detect" : True, "text": Dtext})
+        DB.write_post(photoid, Dtext)
+        summary = text_model.summary_text(Dtext)
+        return jsonify({"photo_id": photoid, "detect" : True, "summary_text": summary})
     
 @app.route("/category", methods = ["POST"])
 def category():
