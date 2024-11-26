@@ -8,7 +8,8 @@ from paddleocr import PaddleOCR
 def text_out(path):   
     ocr = PaddleOCR(lang = 'korean') #다국어 사용시 multilingual
     result = ocr.ocr(path, cls = False)
-    
+    if result == None:
+        return None
 
     texts = [item[1][0] for line in result for item in line]
     
