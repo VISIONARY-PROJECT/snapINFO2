@@ -26,8 +26,13 @@ def upload():
     photoid = str(uuid.uuid4())[:12]                   #서버에는 임의의 이름으로 받은 사진 저장
     f.save("static/img/{}.jpeg".format(photoid))   
 
-    
-    Dtext = text_model.text_out("static/img/{}.jpeg".format(photoid))
+    image_path = "static/img/{}.jpeg".format(photoid)
+    output_path = "static/img/{}_gray.jpeg".format(photoid)
+
+    #이미지 전처리#
+    text_model.preprocess_image_intensity(image_path, output_path)
+
+    Dtext = text_model.text_out(output_path)
     if Dtext == None:                    #인식이 안된 경우 
         print("no text")
         return jsonify({"photo_id": photoid, "detect" : False, "text" : Dtext})
