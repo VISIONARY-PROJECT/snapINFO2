@@ -30,17 +30,17 @@ def upload():
     output_path = "static/img/{}_gray.jpeg".format(photoid)
 
     #이미지 전처리#
-    text_model.preprocess_image_intensity(image_path, output_path)
+    #text_model.preprocess_image_intensity(image_path, output_path)
 
-    Dtext = text_model.text_out(output_path)
+    Dtext = text_model.text_out(image_path)
     if Dtext == None:                    #인식이 안된 경우 
         print("no text")
         return jsonify({"photo_id": photoid, "detect" : False, "text" : Dtext})
     else: 
         print("yes text")
         DB.write_post(photoid, Dtext)
-        #print("text 요약 함수 들어가기전")
-        #summary = text_model.summary_text(Dtext)
+        print("text 요약 함수 들어가기전")
+        summary = text_model.summary_text(Dtext)
         return jsonify({"photo_id": photoid, "detect" : True, "text" : Dtext})  #"summary_text": summary
     
 @app.route("/category", methods = ["POST"])
