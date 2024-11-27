@@ -4,27 +4,27 @@ from paddleocr import PaddleOCR
 import torch
 from transformers import PreTrainedTokenizerFast, BartForConditionalGeneration
 
-#def preprocess_image_intensity(image_path, output_path):
+def preprocess_image_intensity(image_path, output_path):
     # 이미지 읽기
-    #img = cv2.imread(image_path)
+    img = cv2.imread(image_path)
 
     # 이미지 흑백 변환
-    #gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
     # 히스토그램 평활화로 대비 향상
-    #enhanced = cv2.equalizeHist(gray)
+    enhanced = cv2.equalizeHist(gray)
 
     # 특정 밝기 범위 기반으로 마스크 생성
-    #lower, upper = 240, 255  # 밝기 범위 설정 (조정 가능)
-    #mask = cv2.inRange(enhanced, lower, upper)
+    lower, upper = 240, 255  # 밝기 범위 설정 (조정 가능)
+    mask = cv2.inRange(enhanced, lower, upper)
 
     # 모폴로지 연산으로 노이즈 제거 및 텍스트 강조
-    #kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
-    #morphed = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)
+    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
+    morphed = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)
 
     # 최종 결과 이미지 저장
-    #cv2.imwrite(output_path, morphed)
-    #print(f"최종 결과 이미지가 저장되었습니다: {output_path}")
+    cv2.imwrite(output_path, morphed)
+    print(f"최종 결과 이미지가 저장되었습니다: {output_path}")
 
 def text_out(path):   
     ocr = PaddleOCR(lang = 'korean') #다국어 사용시 multilingual
@@ -45,8 +45,8 @@ def text_out(path):
     return combined_text
 
 # koBART 모델과 토크나이저 불러오기
-tokenizer = PreTrainedTokenizerFast.from_pretrained('gogamza/kobart-summarization')
-model = BartForConditionalGeneration.from_pretrained('gogamza/kobart-summarization')
+tokenizer = PreTrainedTokenizerFast.from_pretrained('/kobart_finetuned_model')
+model = BartForConditionalGeneration.from_pretrained('/kobart_finetuned_model')
 print("model download")
 
 # 텍스트 파일 경로 (바탕화면에 위치한 txt 파일 경로를 설정)
