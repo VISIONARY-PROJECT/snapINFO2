@@ -45,8 +45,8 @@ def text_out(path):
     return combined_text
 
 # koBART 모델과 토크나이저 불러오기
-tokenizer = PreTrainedTokenizerFast.from_pretrained('/kobart_finetuned_model')
-model = BartForConditionalGeneration.from_pretrained('/kobart_finetuned_model')
+tokenizer = PreTrainedTokenizerFast.from_pretrained('./kobart_finetuned_model')
+model = BartForConditionalGeneration.from_pretrained('./kobart_finetuned_model')
 print("model download")
 
 # 텍스트 파일 경로 (바탕화면에 위치한 txt 파일 경로를 설정)
