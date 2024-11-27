@@ -59,8 +59,8 @@ def summary_text(text):
     # 요약 생성 (최소 길이 설정)
     summary_ids = model.generate(
         torch.tensor([input_ids]),
-        min_length=50,  # 요약의 최소 길이 (50 토큰)
-        max_length=200,  # 요약의 최대 길이 (200 토큰)
+        min_length=10,  # 요약의 최소 길이 (50 토큰)
+        max_length=100,  # 요약의 최대 길이 (200 토큰)
         length_penalty=2.0,  # 길이에 대한 페널티 (길이를 조정할 때 유용)
         num_beams=4  # 빔 서치 사용 (더 나은 요약 생성 가능)
     )
